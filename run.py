@@ -29,32 +29,23 @@ keys = config['keys']
 
 mg = WxMessage('', '', '')
 
-
-# 注册普通消息
-@itchat.msg_register(TEXT)
-def friend_msg(msg):
-    mg.name = msg.user.nickName
-    mg.type = "朋友"
-    mg.msg = msg.text
-    print_msg(mg)
-
-
 # 注册群聊消息
 @itchat.msg_register(TEXT, isGroupChat=True)
 def group_msg(msg):
-    mg.name = msg.actualNickName
+    mg.name = msg.user.self.nickName
     mg.type = msg.user.nickName
     mg.msg = msg.text
-    print_msg(mg)
+    print_msg(mg,msg)
 
 
 # 打印到的消息
-def print_msg(mg):
+def print_msg(mg,msg):
 
     message_info = "发送类型：" + mg.type + "\n" + "发送人：" + mg.name + "\n" + "内容：" + mg.msg + "\n"
 
     for item in keys:
         if item in mg.msg:
+            print(msg)
             itchat.send(message_info, toUserName='filehelper')
             break
 

@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 import json
-import itchat, time
+import itchat
 from itchat.content import *
 
 
@@ -41,11 +41,10 @@ def group_msg(msg):
 # 打印到的消息
 def print_msg(mg,msg):
 
-    message_info = "发送类型：" + mg.type + "\n" + "发送人：" + mg.name + "\n" + "内容：" + mg.msg + "\n"
+    message_info = "群名：" + mg.type + "\n" + "发送人：" + mg.name + "\n" + "内容：" + mg.msg + "\n"
 
     for item in keys:
         if item in mg.msg:
-            print(msg)
             itchat.send(message_info, toUserName='filehelper')
             break
 

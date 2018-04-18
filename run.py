@@ -32,7 +32,7 @@ mg = WxMessage('', '', '')
 # 注册群聊消息
 @itchat.msg_register(TEXT, isGroupChat=True)
 def group_msg(msg):
-    mg.name = msg.user.self.nickName
+    mg.name = msg.actualNickName
     mg.type = msg.user.nickName
     mg.msg = msg.text
     print_msg(mg,msg)

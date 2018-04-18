@@ -49,6 +49,6 @@ def print_msg(mg,msg):
             break
 
 # 登陆微信
-itchat.auto_login(True)
+itchat.auto_login(enableCmdQR=True)
 # 运行
 itchat.run(True)
